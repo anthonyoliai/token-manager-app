@@ -10,6 +10,7 @@ import {
 } from '@aragon/ui'
 import { stakesPercentages } from '../utils'
 import { addressesEqual } from '../web3-utils'
+import AggregatedVestings from './Vestings/AggregatedVestings'
 import LocalIdentityBadge from './LocalIdentityBadge/LocalIdentityBadge'
 import You from './You'
 import { useIdentity } from './IdentityManager/IdentityManager'
@@ -44,6 +45,7 @@ function InfoBoxes({
   tokenSupply,
   tokenSymbol,
   tokenTransfersEnabled,
+  vestings,
 }) {
   const theme = useTheme()
   const connectedAccount = useConnectedAccount()
@@ -53,6 +55,8 @@ function InfoBoxes({
     holders,
     tokenSupply,
   ])
+
+  const hasVestings = Object.keys(vestings).length > 0
 
   return (
     <React.Fragment>
@@ -145,6 +149,9 @@ function InfoBoxes({
           }}
         />
       </Box>
+      {hasVestings && <Box heading="Locked tokens timeline">
+        <AggregatedVestings vestings={vestings} tokenDecimals={tokenDecimals}></AggregatedVestings>
+      </Box>}
     </React.Fragment>
   )
 }

@@ -118,6 +118,7 @@ function Holders({
           tokenSupply={tokenSupply}
           tokenSymbol={tokenSymbol}
           tokenTransfersEnabled={tokenTransfersEnabled}
+          vestings={vestings}
         />
       }
     />
